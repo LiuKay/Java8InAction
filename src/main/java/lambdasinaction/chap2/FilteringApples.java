@@ -1,6 +1,7 @@
 package lambdasinaction.chap2;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class FilteringApples{
 
@@ -36,7 +37,11 @@ public class FilteringApples{
 		});
 		System.out.println(redApples2);
 
-	}
+        List<Apple> list = inventory.stream().filter(apple -> "red".equals(apple.color) || apple.weight > 100)
+                                    .collect(Collectors.toList());
+        System.out.println(list);
+
+    }
 
 	public static List<Apple> filterGreenApples(List<Apple> inventory){
 		List<Apple> result = new ArrayList<>();

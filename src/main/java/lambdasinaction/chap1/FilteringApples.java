@@ -1,8 +1,13 @@
 package lambdasinaction.chap1;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * 利用 Predicate 接口来返回  true/false
+ */
 public class FilteringApples{
 
     public static void main(String ... args){
@@ -11,7 +16,7 @@ public class FilteringApples{
                                               new Apple(155, "green"),
                                               new Apple(120, "red"));	
 
-        // [Apple{color='green', weight=80}, Apple{color='green', weight=155}]
+        // [Apple{color='green', weight=80}, Apple{color='green', weight=155}] 传递方法
         List<Apple> greenApples = filterApples(inventory, FilteringApples::isGreenApple);
         System.out.println(greenApples);
         
@@ -19,7 +24,7 @@ public class FilteringApples{
         List<Apple> heavyApples = filterApples(inventory, FilteringApples::isHeavyApple);
         System.out.println(heavyApples);
         
-        // [Apple{color='green', weight=80}, Apple{color='green', weight=155}]
+        // [Apple{color='green', weight=80}, Apple{color='green', weight=155}]  传递 Lambda(相当于一个匿名函数)
         List<Apple> greenApples2 = filterApples(inventory, (Apple a) -> "green".equals(a.getColor()));
         System.out.println(greenApples2);
         
@@ -31,6 +36,14 @@ public class FilteringApples{
         List<Apple> weirdApples = filterApples(inventory, (Apple a) -> a.getWeight() < 80 || 
                                                                        "brown".equals(a.getColor()));
         System.out.println(weirdApples);
+
+
+        System.out.println("use Stream:");
+        // 利用 Stream 来处理
+        inventory.stream().filter(apple -> apple.weight>100)
+                 .filter(apple -> "green".equals(apple.color))
+                 .forEach(System.out::println);
+
     }
 
     public static List<Apple> filterGreenApples(List<Apple> inventory){
