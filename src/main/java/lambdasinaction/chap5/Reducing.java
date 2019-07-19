@@ -1,10 +1,10 @@
 package lambdasinaction.chap5;
-import lambdasinaction.chap4.*;
-
-import java.util.stream.*;
-import java.util.*;
-
 import static lambdasinaction.chap4.Dish.menu;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import lambdasinaction.chap4.Dish;
 
 public class Reducing{
 
